@@ -1,0 +1,30 @@
+<div class="layout layout--col layout--top layout--stretch-x">
+  <div class="title_bar">
+    <img class="image" src="https://img.icons8.com/ios-filled/50/bus.png" />
+    <span class="title">{{ sorted_buses.first.stationName }}</span>
+  </div>
+
+  <table class="table table--large" data-table-limit="true">
+    <thead>
+      <tr>
+        <th class="pl--1"><span class="title">Bus</span></th>
+        <th><span class="title">Destination</span></th>
+        <th class="text--right pr--1"><span class="title">Arrives</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for bus in sorted_buses %}
+      <tr>
+        <td class="pl--1"><span class="value">{{ bus.lineName }}</span></td>
+        <td><span class="value">{{ bus.destinationName }}</span></td>
+        <td class="text--right pr--1"><span class="value">{{ bus.expectedArrival | date: "%s" | plus: trmnl.user.utc_offset | date: "%H:%M" }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="title_bar">
+  <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/TfL_roundel_%28no_text%29.svg">
+  <span class="title">Transport for London</span>
+</div>
