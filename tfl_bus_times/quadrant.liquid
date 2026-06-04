@@ -17,7 +17,7 @@
       <tr>
         <td class="pl--1"><span class="label">{{ bus.lineName }}</span></td>
         <td><span class="label">{{ bus.destinationName }}</span></td>
-        <td class="text--right pr--1"><span class="label">{{ bus.expectedArrival | date: "%s" | plus: trmnl.user.utc_offset | date: "%H:%M" }}</span></td>
+        <td class="text--right pr--1"><span class="label value--tnums">{{ bus.expectedArrival | date: "%s" | plus: trmnl.user.utc_offset | date: "%H:%M" }}</span></td>
       </tr>
       {% endfor %}
     </tbody>

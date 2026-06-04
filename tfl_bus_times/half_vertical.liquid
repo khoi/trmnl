@@ -9,7 +9,7 @@
     <div class="content w--full">
       <div class="grid grid--cols-2">
         <span class="value">{{ bus.lineName }}</span>
-        <span class="value text--right">{{ bus.expectedArrival | date: "%s" | plus: trmnl.user.utc_offset | date: "%H:%M" }}</span>
+        <span class="value value--tnums text--right">{{ bus.expectedArrival | date: "%s" | plus: trmnl.user.utc_offset | date: "%H:%M" }}</span>
       </div>
       <span class="value value--small">{{ bus.destinationName }}</span>
     </div>
