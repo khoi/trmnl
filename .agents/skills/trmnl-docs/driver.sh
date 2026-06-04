@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# TRMNL documentation driver — queries https://docs.trmnl.com (GitBook llms.txt).
-# No auth, no app to launch: the docs site IS the thing we drive, via curl.
 set -euo pipefail
 
 BASE="https://docs.trmnl.com"
@@ -25,7 +23,6 @@ Examples:
 EOF
 }
 
-# Normalize a page reference into the canonical "<slug>.md" form.
 norm() { local p="${1#/}"; p="${p#go/}"; p="${p%.md}"; printf '%s.md' "$p"; }
 
 cmd="${1:-}"; [ $# -gt 0 ] && shift || true
