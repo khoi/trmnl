@@ -8,7 +8,7 @@
   {% assign banked_total = banked_total | plus: banked_count %}
 {% endfor %}
 <style>
-  .balancer { box-sizing: border-box; display: flex; flex-direction: column; height: 100%; padding: 10px 14px 8px; color: #111; font-family: Arial, sans-serif; }
+  .balancer { box-sizing: border-box; display: flex; flex-direction: column; height: 100%; padding: 10px 14px 8px; color: #000; font-family: Arial, sans-serif; font-weight: 700; }
   .balancer * { box-sizing: border-box; }
   .balancer-header { display: flex; align-items: end; justify-content: space-between; border-bottom: 3px solid #111; padding-bottom: 7px; }
   .balancer-name { font-size: 26px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
@@ -16,24 +16,24 @@
   .balancer-metrics { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; padding: 10px 0; }
   .balancer-metric { min-height: 69px; border: 2px solid #111; padding: 7px 9px 5px; }
   .balancer-metric-value { font-size: 31px; font-weight: 800; line-height: 1; }
-  .balancer-metric-total { font-size: 19px; font-weight: 500; }
-  .balancer-metric-label { margin-top: 4px; font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; }
+  .balancer-metric-total { font-size: 19px; font-weight: 700; }
+  .balancer-metric-label { margin-top: 4px; font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; }
   .balancer-section { display: flex; align-items: baseline; justify-content: space-between; padding: 1px 0 5px; }
   .balancer-section-title { font-size: 14px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; }
-  .balancer-section-detail { font-size: 11px; font-weight: 700; }
+  .balancer-section-detail { font-size: 12px; font-weight: 800; }
   .balancer-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-  .balancer-table th { border-top: 2px solid #111; border-bottom: 1px solid #111; padding: 5px 5px; font-size: 10px; font-weight: 800; letter-spacing: .6px; text-align: left; text-transform: uppercase; }
-  .balancer-table td { height: 26px; border-bottom: 1px solid #bbb; padding: 3px 5px; font-size: 12px; vertical-align: middle; }
+  .balancer-table th { border-top: 2px solid #111; border-bottom: 1px solid #111; padding: 5px 5px; font-size: 11px; font-weight: 900; letter-spacing: .2px; text-align: left; text-transform: uppercase; }
+  .balancer-table td { height: 26px; border-bottom: 1px solid #777; padding: 3px 5px; font-size: 13px; font-weight: 700; vertical-align: middle; }
   .balancer-table th:first-child, .balancer-table td:first-child { padding-left: 0; }
   .balancer-table th:last-child, .balancer-table td:last-child { padding-right: 0; text-align: right; }
   .balancer-account { overflow: hidden; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
-  .balancer-status { font-size: 10px; font-weight: 800; letter-spacing: .2px; text-transform: uppercase; }
+  .balancer-status { font-size: 11px; font-weight: 900; letter-spacing: .2px; text-transform: uppercase; }
   .balancer-status-ready { color: #111; }
-  .balancer-status-idle { color: #666; }
+  .balancer-status-idle { color: #000; }
   .balancer-remaining { display: flex; align-items: center; gap: 7px; }
   .balancer-track { flex: 1; height: 10px; border: 1px solid #111; background: #fff; }
   .balancer-fill { height: 100%; background: #111; }
   .balancer-percent { width: 32px; font-weight: 700; text-align: right; }
-  .balancer-muted { color: #666; }
-  .balancer-footer { display: flex; justify-content: space-between; margin-top: auto; border-top: 2px solid #111; padding-top: 5px; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+  .balancer-muted { color: #000; }
+  .balancer-footer { display: flex; justify-content: space-between; margin-top: auto; border-top: 2px solid #111; padding-top: 5px; font-size: 10px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
 </style>
