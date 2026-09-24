@@ -1,0 +1,11 @@
+---
+name: Codex Balancer
+strategy: polling
+polling_verb: get
+polling_url: https://halfopen-and-maglev.exe.xyz/stats
+polling_headers: ''
+polling_body: ''
+refresh_interval: 15
+no_screen_padding: 'yes'
+dark_mode: 'no'
+static_data: ''

@@ -1,0 +1,82 @@
+<div class="balancer">
+  <div class="balancer-header">
+    <div class="balancer-name">Codex Balancer</div>
+    <div class="balancer-header-note">Monthly view</div>
+  </div>
+
+  <div class="balancer-metrics">
+    <div class="balancer-metric balancer-metric-primary">
+      <div class="balancer-metric-value">{{ monthly_api_cost | default: "—" }}</div>
+      <div class="balancer-metric-label">Estimated API value this month</div>
+    </div>
+    <div class="balancer-metric">
+      <div class="balancer-metric-value">{{ ready_count }}<span class="balancer-metric-total"> / {{ accounts.size }}</span></div>
+      <div class="balancer-metric-label">Ready accounts</div>
+    </div>
+    <div class="balancer-metric">
+      <div class="balancer-metric-value">{{ banked_total }}</div>
+      <div class="balancer-metric-label">Banked resets</div>
+    </div>
+  </div>
+
+  <div class="balancer-section">
+    <div class="balancer-section-title">Account capacity</div>
+    <div class="balancer-section-detail">{{ cooling_accounts.size }} cooling · {{ accounts.size }} total</div>
+  </div>
+
+  <table class="balancer-table">
+    <colgroup>
+      <col style="width: 24%">
+      <col style="width: 15%">
+      <col style="width: 29%">
+      <col style="width: 22%">
+      <col style="width: 10%">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Account</th>
+        <th>Status</th>
+        <th>Weekly left</th>
+        <th>Resets</th>
+        <th>Banked</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for account in accounts limit: 10 %}
+      <tr>
+        <td class="balancer-account">{{ account.email | default: account.id | escape }}</td>
+        <td>
+          {% case account.status %}
+          {% when "live" %}<span class="balancer-status balancer-status-ready">● Live</span>
+          {% when "priority" %}<span class="balancer-status balancer-status-ready">◆ Priority</span>
+          {% when "cooling" %}<span class="balancer-status balancer-status-idle">◐ Cooling</span>
+          {% when "needs_reauth" %}<span class="balancer-status balancer-status-idle">✕ Reauth</span>
+          {% when "not_routed" %}<span class="balancer-status balancer-status-idle">○ Excluded</span>
+          {% else %}<span class="balancer-status balancer-status-idle">{{ account.status | replace: "_", " " | escape }}</span>
+          {% endcase %}
+        </td>
+        <td>
+          {% if account.weekly_remaining_percent != nil %}
+          <div class="balancer-remaining">
+            <div class="balancer-track"><div class="balancer-fill" style="width: {{ account.weekly_remaining_percent | round }}%"></div></div>
+            <span class="balancer-percent">{{ account.weekly_remaining_percent | round }}%</span>
+          </div>
+          {% else %}<span class="balancer-muted">Unknown</span>{% endif %}
+        </td>
+        <td>{% if account.reset_at %}{{ account.reset_at | slice: 8, 2 }}/{{ account.reset_at | slice: 5, 2 }} {{ account.reset_at | slice: 11, 5 }}{% else %}<span class="balancer-muted">—</span>{% endif %}</td>
+        <td>{% if account.banked_resets != nil %}{{ account.banked_resets }}{% else %}<span class="balancer-muted">—</span>{% endif %}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5" class="balancer-muted">No accounts reported</td></tr>
+      {% endfor %}
+      {% if accounts.size > 10 %}
+      <tr><td colspan="5" class="balancer-muted">Showing 10 of {{ accounts.size }} accounts</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+
+  <div class="balancer-footer">
+    <span>API price estimate, not a bill</span>
+    <span>Reset times UTC · Updated every 15 min</span>
+  </div>
+</div>
