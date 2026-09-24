@@ -26,19 +26,21 @@
 
   <table class="balancer-table">
     <colgroup>
-      <col style="width: 24%">
-      <col style="width: 15%">
-      <col style="width: 29%">
       <col style="width: 22%">
-      <col style="width: 10%">
+      <col style="width: 14%">
+      <col style="width: 29%">
+      <col style="width: 8%">
+      <col style="width: 13%">
+      <col style="width: 14%">
     </colgroup>
     <thead>
       <tr>
         <th>Account</th>
         <th>Status</th>
         <th>Weekly left</th>
-        <th>Resets</th>
         <th>Banked</th>
+        <th>Reset in</th>
+        <th>Traffic 24h</th>
       </tr>
     </thead>
     <tbody>
@@ -63,20 +65,21 @@
           </div>
           {% else %}<span class="balancer-muted">Unknown</span>{% endif %}
         </td>
-        <td>{% if account.reset_at %}{{ account.reset_at | slice: 8, 2 }}/{{ account.reset_at | slice: 5, 2 }} {{ account.reset_at | slice: 11, 5 }}{% else %}<span class="balancer-muted">—</span>{% endif %}</td>
         <td>{% if account.banked_resets != nil %}{{ account.banked_resets }}{% else %}<span class="balancer-muted">—</span>{% endif %}</td>
+        <td>{{ account.reset_in | default: "--" }}</td>
+        <td>{% if account.traffic_24h_percent != nil %}{{ account.traffic_24h_percent }}%{% else %}<span class="balancer-muted">—</span>{% endif %}</td>
       </tr>
       {% else %}
-      <tr><td colspan="5" class="balancer-muted">No accounts reported</td></tr>
+      <tr><td colspan="6" class="balancer-muted">No accounts reported</td></tr>
       {% endfor %}
       {% if accounts.size > 10 %}
-      <tr><td colspan="5" class="balancer-muted">Showing 10 of {{ accounts.size }} accounts</td></tr>
+      <tr><td colspan="6" class="balancer-muted">Showing 10 of {{ accounts.size }} accounts</td></tr>
       {% endif %}
     </tbody>
   </table>
 
   <div class="balancer-footer">
     <span>API price estimate, not a bill</span>
-    <span>Reset times UTC · Updated every 15 min</span>
+    <span>Updated every 15 min</span>
   </div>
 </div>
