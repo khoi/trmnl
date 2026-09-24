@@ -10,12 +10,12 @@
       <div class="balancer-metric-label">Estimated API value this month</div>
     </div>
     <div class="balancer-metric">
-      <div class="balancer-metric-value">{{ ready_count }}<span class="balancer-metric-total"> / {{ accounts.size }}</span></div>
-      <div class="balancer-metric-label">Ready accounts</div>
+      <div class="balancer-metric-value">{{ monthly_input_tokens | default: "—" }}</div>
+      <div class="balancer-metric-label">Input tokens this month</div>
     </div>
     <div class="balancer-metric">
-      <div class="balancer-metric-value">{{ banked_total }}</div>
-      <div class="balancer-metric-label">Banked resets</div>
+      <div class="balancer-metric-value">{{ monthly_output_tokens | default: "—" }}</div>
+      <div class="balancer-metric-label">Output tokens this month</div>
     </div>
   </div>
 

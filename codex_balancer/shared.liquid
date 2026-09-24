@@ -1,12 +1,4 @@
-{% assign live_accounts = accounts | where: "status", "live" %}
-{% assign priority_accounts = accounts | where: "status", "priority" %}
 {% assign cooling_accounts = accounts | where: "status", "cooling" %}
-{% assign ready_count = live_accounts.size | plus: priority_accounts.size %}
-{% assign banked_total = 0 %}
-{% for account in accounts %}
-  {% assign banked_count = account.banked_resets | default: 0 %}
-  {% assign banked_total = banked_total | plus: banked_count %}
-{% endfor %}
 <style>
   .balancer { box-sizing: border-box; display: flex; flex-direction: column; height: 100%; padding: 10px 14px 8px; color: #000; font-family: Arial, sans-serif; font-weight: 700; }
   .balancer * { box-sizing: border-box; }
@@ -16,7 +8,6 @@
   .balancer-metrics { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; padding: 10px 0; }
   .balancer-metric { min-height: 69px; border: 2px solid #111; padding: 7px 9px 5px; }
   .balancer-metric-value { font-size: 31px; font-weight: 800; line-height: 1; }
-  .balancer-metric-total { font-size: 19px; font-weight: 700; }
   .balancer-metric-label { margin-top: 4px; font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; }
   .balancer-section { display: flex; align-items: baseline; justify-content: space-between; padding: 1px 0 5px; }
   .balancer-section-title { font-size: 14px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; }
