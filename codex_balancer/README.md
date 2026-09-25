@@ -1,6 +1,6 @@
 # Codex Balancer screen
 
-This private TRMNL plugin polls the hosted balancer's `/stats` endpoint and shows estimated monthly API value, monthly input and output tokens, weekly capacity, banked resets per account, reset countdowns, and each account's share of traffic over the last 24 hours on a full-size screen. The money figure uses the same pricing estimate as the balancer dashboard; it is not a bill.
+This private TRMNL plugin polls the hosted balancer's `/stats` endpoint and shows estimated monthly API value, monthly input and output tokens, weekly capacity, banked resets per account, reset countdowns, and each account's share of traffic over the last 24 hours on a full-size screen. The footer shows the screen render time in the account's local timezone.
 
 1. Create a Private Plugin with the Polling strategy in your TRMNL account. An official device needs the Developer add-on or Developer Edition to create private plugins.
 2. Copy the fields from `settings.yml` into the plugin settings. Use the configured polling URL and a fifteen-minute refresh interval.

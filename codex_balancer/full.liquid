@@ -79,7 +79,7 @@
   </table>
 
   <div class="balancer-footer">
-    <span>API price estimate, not a bill</span>
+    <span>Refreshed at {{ "now" | date: "%s" | plus: trmnl.user.utc_offset | date: "%H:%M" }}</span>
     <span>Updated every 15 min</span>
   </div>
 </div>
