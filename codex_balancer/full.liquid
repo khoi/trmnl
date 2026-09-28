@@ -26,16 +26,18 @@
 
   <table class="balancer-table">
     <colgroup>
-      <col style="width: 22%">
-      <col style="width: 14%">
-      <col style="width: 29%">
+      <col style="width: 18%">
+      <col style="width: 12%">
+      <col style="width: 12%">
+      <col style="width: 24%">
       <col style="width: 8%">
       <col style="width: 13%">
-      <col style="width: 14%">
+      <col style="width: 13%">
     </colgroup>
     <thead>
       <tr>
         <th>Account</th>
+        <th>Type</th>
         <th>Status</th>
         <th>Weekly left</th>
         <th>Banked</th>
@@ -47,6 +49,7 @@
       {% for account in accounts limit: 10 %}
       <tr>
         <td class="balancer-account">{{ account.email | default: account.id | escape }}</td>
+        <td class="balancer-plan">{% case account.plan %}{% when "prolite" %}Pro Lite{% when "self_serve_business_prolite" %}Biz Pro Lite{% else %}{{ account.plan | default: "—" | replace: "_", " " | capitalize | escape }}{% endcase %}</td>
         <td>
           {% case account.status %}
           {% when "live" %}<span class="balancer-status balancer-status-ready">● Live</span>
@@ -70,10 +73,10 @@
         <td>{% if account.traffic_24h_percent != nil %}{{ account.traffic_24h_percent }}%{% else %}<span class="balancer-muted">—</span>{% endif %}</td>
       </tr>
       {% else %}
-      <tr><td colspan="6" class="balancer-muted">No accounts reported</td></tr>
+      <tr><td colspan="7" class="balancer-muted">No accounts reported</td></tr>
       {% endfor %}
       {% if accounts.size > 10 %}
-      <tr><td colspan="6" class="balancer-muted">Showing 10 of {{ accounts.size }} accounts</td></tr>
+      <tr><td colspan="7" class="balancer-muted">Showing 10 of {{ accounts.size }} accounts</td></tr>
       {% endif %}
     </tbody>
   </table>
