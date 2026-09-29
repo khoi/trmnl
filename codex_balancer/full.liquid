@@ -26,12 +26,13 @@
 
   <table class="balancer-table">
     <colgroup>
-      <col style="width: 18%">
-      <col style="width: 12%">
-      <col style="width: 12%">
-      <col style="width: 24%">
-      <col style="width: 8%">
-      <col style="width: 13%">
+      <col style="width: 17%">
+      <col style="width: 10%">
+      <col style="width: 11%">
+      <col style="width: 20%">
+      <col style="width: 7%">
+      <col style="width: 11%">
+      <col style="width: 11%">
       <col style="width: 13%">
     </colgroup>
     <thead>
@@ -43,6 +44,7 @@
         <th>Banked</th>
         <th>Reset in</th>
         <th>Traffic 24h</th>
+        <th>Burnt/mo</th>
       </tr>
     </thead>
     <tbody>
@@ -71,12 +73,13 @@
         <td>{% if account.banked_resets != nil %}{{ account.banked_resets }}{% else %}<span class="balancer-muted">—</span>{% endif %}</td>
         <td>{{ account.reset_in | default: "--" }}</td>
         <td>{% if account.traffic_24h_percent != nil %}{{ account.traffic_24h_percent }}%{% else %}<span class="balancer-muted">—</span>{% endif %}</td>
+        <td>{{ account.monthly_api_cost | default: "—" }}</td>
       </tr>
       {% else %}
-      <tr><td colspan="7" class="balancer-muted">No accounts reported</td></tr>
+      <tr><td colspan="8" class="balancer-muted">No accounts reported</td></tr>
       {% endfor %}
       {% if accounts.size > 10 %}
-      <tr><td colspan="7" class="balancer-muted">Showing 10 of {{ accounts.size }} accounts</td></tr>
+      <tr><td colspan="8" class="balancer-muted">Showing 10 of {{ accounts.size }} accounts</td></tr>
       {% endif %}
     </tbody>
   </table>
